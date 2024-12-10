@@ -2,22 +2,6 @@ import type { Card } from '@/types/card'
 import { CardSymbol, CardType } from '@/types/card'
 
 const useGame = () => {
-  const getRandomSolutions = (solutions: string[], numberOfsolutions: number) => {
-    if (solutions.length < numberOfsolutions) {
-      throw new Error('Less possible solutions than desired number')
-    }
-
-    const shuffled = [...solutions]
-
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1))
-
-      ;[shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]]
-    }
-
-    return shuffled.slice(0, numberOfsolutions)
-  }
-
   const createDeck = (): Card[] => {
     const symbols = Object.values(CardSymbol)
 
@@ -57,7 +41,6 @@ const useGame = () => {
   return {
     createDeck,
     generateRandomCards,
-    getRandomSolutions,
   }
 }
 
