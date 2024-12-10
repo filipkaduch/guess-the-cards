@@ -1,6 +1,10 @@
 # guess-the-cards
 
-This template should help get you started developing with Vue 3 in Vite.
+- Vue 3 + TS + TailwindCSS + Vite
+- Pinia for managing Leaderboard and Game time progress
+- Separate components for each stage of Game process (Game round, Result round, Leaderboard -end game)
+- Couple of composables for Cards utilities and Random message creation
+- DON'T FORGET TO create your own .env file and add VITE_APP_API_NINJA_KEY to get messages, otherwise there will be no random message displayed in between rounds
 
 ## Recommended IDE Setup
 
