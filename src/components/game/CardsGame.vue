@@ -44,7 +44,7 @@ const gameSolutions = ref<string[]>([])
 const createRound = () => {
   randomCards.value = generateRandomCards(5)
 
-  let tempCards = randomCards.value.slice()
+  const tempCards = randomCards.value.slice()
 
   while (gameSolutions.value.length < 3) {
     const solutions = Hand.solve(tempCards.map((card) => card.text))
@@ -55,18 +55,17 @@ const createRound = () => {
 
     gameSolutions.value.push(solutions.descr)
 
-    tempCards = tempCards.filter((card) => {
-      const mostValues = solutions.values.reduce(
-        (longest: Solution[], currentArray: Solution[]) => {
-          return currentArray.length > longest.length ? currentArray : longest
-        },
-        [],
-      )
+    const mostValues = solutions.values.reduce((longest: Solution[], currentArray: Solution[]) => {
+      return currentArray.length > longest.length ? currentArray : longest
+    }, [])
 
-      const value = mostValues[0].value
+    const valueToRemove = mostValues[0].value
 
-      return card.symbol !== value
-    })
+    const indexToRemove = tempCards.findIndex((card) => card.symbol === valueToRemove)
+    
+    if (indexToRemove !== -1) {
+      tempCards.splice(indexToRemove, 1)
+    }
   }
 
   gameSolutions.value = gameSolutions.value.sort(() => Math.random() - 0.5)
